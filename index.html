@@ -26,12 +26,16 @@
 				<div class="col-lg-8">
 					<div class="jumbotron">
 					<h1>台灣國道、快速道路里程查詢</h1>
+                      <div class="col-lg-3">
 						<div class="input-group">				      
-							<input id="latlng" type="text" class="form-control" placeholder="24 56 19.8 121 21 35.2 or 24.9388 121.3598">				      
-							<span class="input-group-btn">
-								<button id="submit" class="btn btn-default" type="button">Go!</button>				      
-							</span>				    
+							<input id="latlng" type="text" class="form-control" placeholder="24 56 19.8 121 21 35.2 or 24.9388 121.3598" value="24.9388 121.3598">
+                          <div class="input-group-btn">
+                            <button id="submit" class="btn btn-default" type="submit">
+                              <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                          </div>
 						</div>
+                        </div>
 					</div>
 				</div>
 				<div class="col-lg-2"></div>
@@ -65,15 +69,20 @@
           ]
         });
         
-        var geocoder = new google.maps.Geocoder;
-        var infowindow = new google.maps.InfoWindow;
-
-        document.getElementById('submit').addEventListener('click', function() {
-          geocodeLatLng(geocoder, map, infowindow);
+        var ctaLayer = new google.maps.KmlLayer({
+//          url: 'KML/cta.kml',
+          url: 'http://kobenein.github.io/test.kml',
+          map: map
         });
         
         
-        function geocodeLatLng(geocoder, map, infowindow) {
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeLatLng(map);
+        });
+        
+        
+        function geocodeLatLng( map) {
 	        var input = document.getElementById('latlng').value;
        
 	        var patt1 = /\d{2}\s\d{2}\s\d{1,2}\.\d{1,2}\s\d{3}\s\d{2}\s\d{1,2}\.\d{1,2}/;
@@ -87,7 +96,7 @@
 			    input = input.split(" ").map(Number)
 			    latlng = {lat: input[0], lng: input[1]};
 			} else {
-			    alert("輸入格式錯誤")
+			    alert("輸入格式錯誤\n除了小數點跟空格\n不用打任何英文與符號")
 			}
           
 			

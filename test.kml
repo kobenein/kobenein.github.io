@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+  <Document>
+    <name>test.kml</name>
+    <Placemark>
+      <name>°ê¤T47KM</name>
+      
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>121.3907276,24.9516695,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>°ê¤T48KM</name>
+      
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>121.3807775,24.9513295,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>°ê¤T49KM</name>
+      
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>121.3715875,24.9482795,0</coordinates>
+      </Point>
+    </Placemark>
+
+    <Placemark>
+      <name>°ê¤T50KM</name>
+      
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>121.3639075,24.9425695,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>°ê¤T51KM</name>
+      
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>121.3566175,24.9365595,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>°ê¤T52KM</name>
+      
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>121.3471275,24.9348495,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>°ê¤T53KM</name>
+      
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>121.3376875,24.9375495,0</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>
