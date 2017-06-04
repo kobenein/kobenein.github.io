@@ -51,79 +51,99 @@
 <!--    ============================================================-->                  
                   <div id="map"></div>
                   <script>
-                    var map;
-                    function initMap(){
-                      map = new google.maps.Map(document.getElementById('map'), {
-                        disableDefaultUI: true,
-                        zoom: 8,
-                        center: new google.maps.LatLng(23.7,120.8),
-                        styles: [
-                          {
-                            featureType: 'all',
-                            stylers: [{'lightness':25},{'saturation':-50}]
-                          },
-                          {
-                            featureType: 'road.highway.controlled_access',
-                            elementType: 'geometry',
-                            stylers: [{'lightness':-25},{'saturation':50}]
-                          },
-                          {
-                            featureType: 'road.highway.controlled_access',
-                            elementType: 'labels.text',
-                            stylers: [{'lightness':-25},{'saturation':50}]
-                          }
-                        ]
-                      });
+                  var map;
+                  function initMap(){
+                    map = new google.maps.Map(document.getElementById('map'), {
+                      disableDefaultUI: true,
+                      zoom: 8,
+                      center: new google.maps.LatLng(23.7,120.8),
+                      styles: [
+                        {
+                          featureType: 'all',
+                          stylers: [{'lightness':50},{'saturation':-50}]
+                        },
+                        {
+                          featureType: 'road.highway.controlled_access',
+                          elementType: 'geometry',
+                          stylers: [{'lightness':-25},{'saturation':50}]
+                        },
+                        {
+                          featureType: 'road.highway.controlled_access',
+                          elementType: 'labels.text',
+                          stylers: [{'lightness':-25},{'saturation':50}]
+                        }
+                      ]
+                    });
 
-                      var Layer = new google.maps.KmlLayer({
-                        url: 'https://kobenein.github.io/國道、快速道路里程~.kml',
-//                        url: 'F:\VVVV\TaiwanHighwayPin\KML\test.kml',
+
+                    
+
+
+                    document.getElementById('submit').addEventListener('click', function() {geocodeLatLng(map);});
+
+
+
+//                  google.maps.event.addListener(map, 'zoom_changed', function() {
+//                  console.log(map.getZoom());
+//                  });
+
+                  }
+                    
+                    
+
+                    function geocodeLatLng( map) {
+                      var input = document.getElementById('latlng').value;
+
+                      var patt1 = /\d{2}\s\d{2}\s\d{1,2}\.\d{1,2}\s\d{3}\s\d{2}\s\d{1,2}\.\d{1,2}/;
+                      var patt2 = /\d{2}\.\d{4,}\s\d{3}\.\d{4,}/;
+
+                      var latlng;
+                      if (patt1.test(input)) {
+                          input = input.split(" ").map(Number)
+                          latlng = {lat: input[0] + input[1]/60 + input[2]/3600, lng: input[3] + input[4]/60 + input[5]/3600};
+                      } else if (patt2.test(input)) {
+                          input = input.split(" ").map(Number)
+                          latlng = {lat: input[0], lng: input[1]};
+                      } else {
+                          alert("輸入格式錯誤\n除了小數點跟空格\n不用打任何英文與符號")
+                      }
+                      
+                      
+
+
+                      map.setCenter(latlng);
+                      map.setZoom(16);
+                      var marker = new google.maps.Marker({
+                              animation: google.maps.Animation.BOUNCE,
+                              position: latlng,
+                              map: map
+                      });
+                      
+                      loadKmlLayer('https://kobenein.github.io/國道、快速道路里程~.kml', map);
+                      
+                      
+                      
+                    }
+                    
+                    
+                    function loadKmlLayer(src, map) {
+                      var kmlLayer = new google.maps.KmlLayer(src, {
+                        suppressInfoWindows: true,
+                        preserveViewport: true,
                         map: map
                       });
-                      
-                      
-                      document.getElementById('submit').addEventListener('click', function() {geocodeLatLng(map);});
-        
-        
-        function geocodeLatLng( map) {
-	        var input = document.getElementById('latlng').value;
-       
-	        var patt1 = /\d{2}\s\d{2}\s\d{1,2}\.\d{1,2}\s\d{3}\s\d{2}\s\d{1,2}\.\d{1,2}/;
-	        var patt2 = /\d{2}\.\d{4,}\s\d{3}\.\d{4,}/;
-	        
-	        var latlng;
-	        if (patt1.test(input)) {
-			    input = input.split(" ").map(Number)
-			    latlng = {lat: input[0] + input[1]/60 + input[2]/3600, lng: input[3] + input[4]/60 + input[5]/3600};
-			} else if (patt2.test(input)) {
-			    input = input.split(" ").map(Number)
-			    latlng = {lat: input[0], lng: input[1]};
-			} else {
-			    alert("輸入格式錯誤\n除了小數點跟空格\n不用打任何英文與符號")
-			}
-          
-			
-			
-			map.setCenter(latlng);
-			map.setZoom(16);
-			var marker = new google.maps.Marker({
-	              	animation: google.maps.Animation.BOUNCE,
-	                position: latlng,
-	                map: map
-	        });
-          
-          
-
-        }
-                    google.maps.event.addListener(map, 'zoom_changed', function() {
-              console.log(map.getZoom());
-            });
-        
-      }
+                      google.maps.event.addListener(kmlLayer, 'click', function(event) {
+                        var content = event.featureData.infoWindowHtml;
+                        var testimonial = document.getElementById('capture');
+                        testimonial.innerHTML = content;
+                      });
+                    }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?v=3.26&key=AIzaSyArciXQqvan6TFx5Ga9x2fX7o53GI_t9_I&callback=initMap">
     </script>
+                  
+<!--    ============================================================-->                  
 
 
 				</div>
